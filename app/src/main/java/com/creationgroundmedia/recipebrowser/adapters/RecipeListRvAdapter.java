@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.creationgroundmedia.recipebrowser.R;
-import com.creationgroundmedia.recipebrowser.activities.RecipeDetailActivity;
+import com.creationgroundmedia.recipebrowser.activities.RecipeDetailActivityLinear;
 import com.creationgroundmedia.recipebrowser.models.Recipe;
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class RecipeListRvAdapter extends RecyclerView.Adapter<RecipeListRvAdapte
         public void onClick(View view) {
             int position = getAdapterPosition();
             if (position == RecyclerView.NO_POSITION) return;
-            RecipeDetailActivity.start(mContext, mRecipes.get(position));
+            RecipeDetailActivityLinear.start(mContext, mRecipes.get(position));
         }
     }
 }

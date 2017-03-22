@@ -4,10 +4,6 @@ package com.creationgroundmedia.recipebrowser.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class Ingredient implements Parcelable {
     private String quantity;
     private String name;

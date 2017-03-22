@@ -1,10 +1,12 @@
-package com.creationgroundmedia.recipebrowser.activities;
+package com.creationgroundmedia.recipebrowser.fragments;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,36 +17,39 @@ import com.creationgroundmedia.recipebrowser.models.Recipe;
 
 import java.util.List;
 
-public class RecipeDetailActivity extends AppCompatActivity {
+/**
+ * Created by geo on 3/22/17.
+ */
 
+public class RecipeDetailFragment extends Fragment {
     private static final String RECIPE = "recipe";
+    Recipe mRecipe;
 
-    private Recipe mRecipe;
-
-    public static void start(Context context, Recipe recipe) {
-        Intent intent = new Intent(context, RecipeDetailActivity.class);
-        intent.putExtra(RECIPE, recipe);
-        context.startActivity(intent);
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe_detail);
-        ImageView ivImage = (ImageView) findViewById(R.id.ivImage);
-        TextView tvIngredientsList = (TextView) findViewById(R.id.tvIngredientsList);
-        TextView tvMethodItemList = (TextView) findViewById(R.id.tvMethodItemList);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mRecipe = getActivity().getIntent().getParcelableExtra(RECIPE);
+    }
 
-        mRecipe = getIntent().getParcelableExtra(RECIPE);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
 
-        ActionBar actionBar = getSupportActionBar();
-        String name = mRecipe.getName();
-        actionBar.setTitle(mRecipe.getName());
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        ImageView ivImage = (ImageView) view.findViewById(R.id.ivImage);
+        TextView tvIngredientsList = (TextView) view.findViewById(R.id.tvIngredientsList);
+        TextView tvMethodItemList = (TextView) view.findViewById(R.id.tvMethodItemList);
 
         Glide.with(this).load(mRecipe.getImageURL()).into(ivImage);
         tvIngredientsList.setText(buildIngredientsList(mRecipe.getIngredients()));
         tvMethodItemList.setText(buildMethodStepsList(mRecipe.getSteps()));
+
+        return view;
     }
 
     private CharSequence buildIngredientsList(List<Ingredient> ingredients) {
