@@ -38,6 +38,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         mRecipe = getIntent().getParcelableExtra(RECIPE);
 
         ActionBar actionBar = getSupportActionBar();
+        String name = mRecipe.getName();
         actionBar.setTitle(mRecipe.getName());
         actionBar.setDisplayHomeAsUpEnabled(true);
 
