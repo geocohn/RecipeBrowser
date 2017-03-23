@@ -22,11 +22,16 @@ import java.util.Arrays;
 public class RecipeListActivity extends AppCompatActivity implements RecipeListRvAdapter.SwitchState {
 
     private static final String LOG_TAG = RecipeListActivity.class.getSimpleName();
+    private static final String RESPONSIVE = "responsive";
     private SwitchCompat swResponsive;
+    private boolean isResponsive = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            isResponsive = savedInstanceState.getBoolean(RESPONSIVE);
+        }
         setContentView(R.layout.activity_recipe_list);
 
         ArrayList<Recipe> recipes = getRecipesFromAsset("Recipes.json");
@@ -67,7 +72,14 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListR
         swResponsive = (SwitchCompat) menu.findItem(R.id.miResponsive)
                 .getActionView()
                 .findViewById(R.id.swResponsive);
+        swResponsive.setChecked(isResponsive);
         return true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean(RESPONSIVE, getState());
+        super.onSaveInstanceState(outState);
     }
 
     @Override

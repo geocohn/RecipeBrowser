@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.creationgroundmedia.recipebrowser.R;
 import com.creationgroundmedia.recipebrowser.models.Recipe;
 
-import java.util.List;
+import static com.creationgroundmedia.recipebrowser.util.Util.buildMethodStepsList;
 
 /**
  * Created by geo on 3/22/17.
@@ -42,16 +42,5 @@ public class RecipeDetailFragmentMethod extends Fragment {
         TextView tvMethodItemList = (TextView) view.findViewById(R.id.tvMethodItemList);
         tvMethodItemList.setText(buildMethodStepsList(mRecipe.getSteps()));
         return view;
-    }
-
-    private CharSequence buildMethodStepsList(List<String> steps) {
-        StringBuilder builder = new StringBuilder();
-        for (String step : steps) {
-            builder.append('‣');
-            builder.append(' ');
-            builder.append(step);
-            builder.append('\n');
-        }
-        return builder.toString();
     }
 }

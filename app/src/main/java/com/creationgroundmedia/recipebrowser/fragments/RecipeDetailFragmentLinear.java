@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.creationgroundmedia.recipebrowser.R;
-import com.creationgroundmedia.recipebrowser.models.Ingredient;
 import com.creationgroundmedia.recipebrowser.models.Recipe;
 
-import java.util.List;
+import static com.creationgroundmedia.recipebrowser.util.Util.buildIngredientsList;
+import static com.creationgroundmedia.recipebrowser.util.Util.buildMethodStepsList;
 
 /**
  * Created by geo on 3/22/17.
@@ -50,27 +50,5 @@ public class RecipeDetailFragmentLinear extends Fragment {
         tvMethodItemList.setText(buildMethodStepsList(mRecipe.getSteps()));
 
         return view;
-    }
-
-    private CharSequence buildIngredientsList(List<Ingredient> ingredients) {
-        StringBuilder builder = new StringBuilder();
-        for (Ingredient ingredient : ingredients) {
-            builder.append(ingredient.getQuantity());
-            builder.append(' ');
-            builder.append(ingredient.getName());
-            builder.append('\n');
-        }
-        return builder.toString();
-    }
-
-    private CharSequence buildMethodStepsList(List<String> steps) {
-        StringBuilder builder = new StringBuilder();
-        for (String step : steps) {
-            builder.append('‣');
-            builder.append(' ');
-            builder.append(step);
-            builder.append('\n');
-        }
-        return builder.toString();
     }
 }

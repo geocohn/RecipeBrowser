@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.creationgroundmedia.recipebrowser.R;
-import com.creationgroundmedia.recipebrowser.models.Ingredient;
 import com.creationgroundmedia.recipebrowser.models.Recipe;
 
-import java.util.List;
+import static com.creationgroundmedia.recipebrowser.util.Util.buildIngredientsList;
 
 /**
  * Created by geo on 3/22/17.
@@ -43,16 +42,5 @@ public class RecipeDetailFragmentIngredients extends Fragment {
         TextView tvIngredientsList = (TextView) view.findViewById(R.id.tvIngredientsList);
         tvIngredientsList.setText(buildIngredientsList(mRecipe.getIngredients()));
         return view;
-    }
-
-    private CharSequence buildIngredientsList(List<Ingredient> ingredients) {
-        StringBuilder builder = new StringBuilder();
-        for (Ingredient ingredient : ingredients) {
-            builder.append(ingredient.getQuantity());
-            builder.append(' ');
-            builder.append(ingredient.getName());
-            builder.append('\n');
-        }
-        return builder.toString();
     }
 }

@@ -16,7 +16,9 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/vpPages">
+        android:id="@+id/vpPages"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
     </android.support.v4.view.ViewPager>
 
 </LinearLayout>
