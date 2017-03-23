@@ -10,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.creationgroundmedia.recipebrowser.R;
 import com.creationgroundmedia.recipebrowser.adapters.RecipeDetailPagerAdapter;
+import com.creationgroundmedia.recipebrowser.fragments.RecipeDetailFragmentIngredients;
+import com.creationgroundmedia.recipebrowser.fragments.RecipeDetailFragmentMain;
+import com.creationgroundmedia.recipebrowser.fragments.RecipeDetailFragmentMethod;
 import com.creationgroundmedia.recipebrowser.models.Recipe;
 
 public class RecipeDetailActivityResponsive extends AppCompatActivity {
@@ -45,7 +48,20 @@ public class RecipeDetailActivityResponsive extends AppCompatActivity {
             TabLayout tlTabs = (TabLayout) findViewById(R.id.tlTabs);
             tlTabs.setupWithViewPager(vpPages);
         } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flMainContainer, RecipeDetailFragmentMain.createInstance(mRecipe))
+                    .commit();
 
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flIngredientsContainer, RecipeDetailFragmentIngredients.createInstance(mRecipe))
+                    .commit();
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flMethodContainer, RecipeDetailFragmentMethod.createInstance(mRecipe))
+                    .commit();
         }
     }
 }
