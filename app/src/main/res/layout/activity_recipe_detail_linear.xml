@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/frRecipeDetailFragment"
-        android:name="com.creationgroundmedia.recipebrowser.fragments.RecipeDetailFragment"
+        android:name="com.creationgroundmedia.recipebrowser.fragments.RecipeDetailFragmentLinear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_recipe_detail" />

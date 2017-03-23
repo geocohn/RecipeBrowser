@@ -21,6 +21,9 @@
         <activity android:name=".activities.RecipeDetailActivityLinear"
             android:parentActivityName=".activities.RecipeListActivity">
         </activity>
+        <activity android:name=".activities.RecipeDetailActivityResponsive"
+            android:parentActivityName=".activities.RecipeListActivity">
+        </activity>
     </application>
 
 </manifest>

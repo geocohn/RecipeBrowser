@@ -21,7 +21,7 @@ import java.util.List;
  * Created by geo on 3/22/17.
  */
 
-public class RecipeDetailFragment extends Fragment {
+public class RecipeDetailFragmentLinear extends Fragment {
     private static final String RECIPE = "recipe";
     Recipe mRecipe;
 

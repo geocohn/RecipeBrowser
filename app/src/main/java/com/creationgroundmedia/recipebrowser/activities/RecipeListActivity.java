@@ -4,6 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Switch;
 
 import com.creationgroundmedia.recipebrowser.R;
 import com.creationgroundmedia.recipebrowser.adapters.RecipeListRvAdapter;
@@ -15,9 +19,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RecipeListActivity extends AppCompatActivity {
+public class RecipeListActivity extends AppCompatActivity implements RecipeListRvAdapter.SwitchState {
 
     private static final String LOG_TAG = RecipeListActivity.class.getSimpleName();
+    private SwitchCompat swResponsive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +59,19 @@ public class RecipeListActivity extends AppCompatActivity {
         }
 
         return json;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        swResponsive = (SwitchCompat) menu.findItem(R.id.miResponsive)
+                .getActionView()
+                .findViewById(R.id.swResponsive);
+        return true;
+    }
+
+    @Override
+    public boolean getState() {
+        return swResponsive.isChecked();
     }
 }

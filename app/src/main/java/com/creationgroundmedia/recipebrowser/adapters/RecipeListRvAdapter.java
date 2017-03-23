@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.creationgroundmedia.recipebrowser.R;
 import com.creationgroundmedia.recipebrowser.activities.RecipeDetailActivityLinear;
+import com.creationgroundmedia.recipebrowser.activities.RecipeDetailActivityResponsive;
 import com.creationgroundmedia.recipebrowser.models.Recipe;
 
 import java.util.ArrayList;
@@ -24,10 +25,18 @@ public class RecipeListRvAdapter extends RecyclerView.Adapter<RecipeListRvAdapte
 
     final Context mContext;
     private ArrayList<Recipe> mRecipes;
+    private SwitchState mSwitchState;
 
     public RecipeListRvAdapter(Context context, ArrayList<Recipe> recipes) {
         mContext = context;
         mRecipes = recipes;
+        if (context instanceof SwitchState) {
+            mSwitchState = (SwitchState) context;
+        } else {
+            throw new RuntimeException("Class creating "
+                    + RecipeListRvAdapter.class.getSimpleName()
+                    + " needs to implement SwitchState");
+        }
     }
 
     @Override
@@ -68,7 +77,15 @@ public class RecipeListRvAdapter extends RecyclerView.Adapter<RecipeListRvAdapte
         public void onClick(View view) {
             int position = getAdapterPosition();
             if (position == RecyclerView.NO_POSITION) return;
-            RecipeDetailActivityLinear.start(mContext, mRecipes.get(position));
+            if (mSwitchState.getState()) {
+                RecipeDetailActivityResponsive.start(mContext, mRecipes.get(position));
+            } else {
+                RecipeDetailActivityLinear.start(mContext, mRecipes.get(position));
+            }
         }
+    }
+
+    public interface SwitchState {
+        boolean getState();
     }
 }
