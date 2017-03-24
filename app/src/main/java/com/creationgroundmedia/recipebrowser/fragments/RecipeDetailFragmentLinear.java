@@ -39,7 +39,7 @@ public class RecipeDetailFragmentLinear extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_recipe_detail_linear, container, false);
 
         ImageView ivImage = (ImageView) view.findViewById(R.id.ivImage);
         TextView tvIngredientsList = (TextView) view.findViewById(R.id.tvIngredientsList);
