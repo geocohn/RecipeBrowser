@@ -29,10 +29,12 @@ public class RecipeDetailActivityLinear extends AppCompatActivity {
         mRecipe = getIntent().getParcelableExtra(RECIPE);
 
         ActionBar actionBar = getSupportActionBar();
-        String name = mRecipe.getName();
-        if (name != null) {
-            actionBar.setTitle(name);
+        if (actionBar != null) {
+            String name = mRecipe.getName();
+            if (name != null) {
+                actionBar.setTitle(name);
+            }
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 }

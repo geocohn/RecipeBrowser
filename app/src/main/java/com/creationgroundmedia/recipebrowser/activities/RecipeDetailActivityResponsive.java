@@ -19,8 +19,6 @@ public class RecipeDetailActivityResponsive extends AppCompatActivity {
 
     private static final String RECIPE = "recipe";
 
-    private Recipe mRecipe;
-
     public static void start(Context context, Recipe recipe) {
         Intent intent = new Intent(context, RecipeDetailActivityResponsive.class);
         intent.putExtra(RECIPE, recipe);
@@ -32,14 +30,16 @@ public class RecipeDetailActivityResponsive extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail_responsive);
 
-        mRecipe = getIntent().getParcelableExtra(RECIPE);
+        Recipe mRecipe = getIntent().getParcelableExtra(RECIPE);
 
         ActionBar actionBar = getSupportActionBar();
-        String name = mRecipe.getName();
-        if (name != null) {
-            actionBar.setTitle(name);
+        if (actionBar != null) {
+            String name = mRecipe.getName();
+            if (name != null) {
+                actionBar.setTitle(name);
+            }
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        actionBar.setDisplayHomeAsUpEnabled(true);
 
         ViewPager vpPages = (ViewPager) findViewById(R.id.vpPages);
 
