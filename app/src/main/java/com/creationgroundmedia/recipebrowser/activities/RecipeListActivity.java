@@ -24,7 +24,7 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListR
     private static final String LOG_TAG = RecipeListActivity.class.getSimpleName();
     private static final String RESPONSIVE = "responsive";
     private SwitchCompat swResponsive;
-    private boolean isResponsive = false;
+    private boolean isResponsive = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
