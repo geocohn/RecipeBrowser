@@ -3,6 +3,13 @@
 
 This project is a demo to illustrate the use of Fragments and ViewPagers.
 
+The app presents a list of recipes from a JSON stream stored as an ``assets`` resource.
+When the user clicks on a recipe, the app uses a switch in the AppBar to choose a Detail Activity.
+
+There are two detail activities:
+1. ``RecipeDetailActivityLinear`` uses a Fragment View in the XML layout to display a single fragment
+2. ``RecipeDetailActivityResponsive`` uses a ViewPager to display 3 fragments when the device is oriented vertically, and displays the same 3 fragments side by side when the device is rotated horizontally.
+
 ## Authors
 
 * **George Cohn** - *Initial work* - https://github.com/GeoCohn
