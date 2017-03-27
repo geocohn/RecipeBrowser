@@ -1,5 +1,7 @@
 package com.creationgroundmedia.recipebrowser.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,14 +26,15 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListR
     private static final String LOG_TAG = RecipeListActivity.class.getSimpleName();
     private static final String RESPONSIVE = "responsive";
     private SwitchCompat swResponsive;
-    private boolean isResponsive = true;
+    private boolean isResponsive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            isResponsive = savedInstanceState.getBoolean(RESPONSIVE);
-        }
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        isResponsive = sharedPref.getBoolean(RESPONSIVE, true);
+
         setContentView(R.layout.activity_recipe_list);
 
         ArrayList<Recipe> recipes = getRecipesFromAsset("Recipes.json");
@@ -78,7 +81,10 @@ public class RecipeListActivity extends AppCompatActivity implements RecipeListR
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putBoolean(RESPONSIVE, getState());
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(RESPONSIVE, getState());
+        editor.apply();
         super.onSaveInstanceState(outState);
     }
 
